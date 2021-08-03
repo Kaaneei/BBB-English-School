@@ -1,0 +1,888 @@
+@charset "UTF-8";
+
+html {
+  font-size: 100%;
+}
+body {
+  color: #333;
+  font-family: "游ゴシック体", "YuGothic", "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+  letter-spacing: 0.1em;
+}
+a {
+  color: #333;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+li {
+  list-style: none;
+}
+/*
+コンテンツ幅
+*/
+.wrapper {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+}
+/*
+セクションタイトル
+*/
+.section-title {
+  font-size: 2.25rem;
+  margin-bottom: 100px;
+  text-align: center;
+  position: relative;
+}
+/* 疑似要素でタイトル下に下線を引く */
+.section-title::after {
+  content: "";
+  width: 100px;
+  height: 3px;
+  background-color: #333;
+  display: block;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+/*-------------------------------------------
+ヘッダー
+-------------------------------------------*/
+#header {
+  height: 100px;
+  padding: 40px 0 0 50px;
+}
+#header .site-title {
+  width: 100px;
+  line-height: 1px;
+}
+#header .site-title a {
+  display: block;
+}
+
+/*
+ハンバーガ―メニュー
+*/
+.hamburger {
+  width: 100px;
+  height: 100px;
+  background-color: #ff2a2a;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 30;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.hamburger:hover {
+  opacity: 0.7;
+}
+/* メニューが閉じているときのハンバーガーメニューの線 */
+.hamburger span {
+  width: 50px;
+  height: 2px ;
+  background: #fff;
+  position: absolute;
+  left: 25px;
+  transition: 0.3s ease-in-out;
+}
+/* 1本目線位置 */
+.hamburger span:nth-child(1) {
+  top: 36px;
+}
+/* 2本目線位置 */
+.hamburger span:nth-child(2) {
+  top: 50px;
+}
+/* 3本目線位置 */
+.hamburger span:nth-child(3) {
+  top: 64px;
+}
+/*
+メニューが開いているときのハンバーガーメニュー
+1本目の線を-45度回転
+*/
+.hamburger.active span:nth-child(1) {
+  top: 47px;
+  left: 25px;
+  background :#fff;
+  transform: rotate(-45deg);
+}
+/* 2本目と3本目を重ねて45度回転 */
+.hamburger.active span:nth-child(2),
+.hamburger.active span:nth-child(3) {
+  top: 47px;
+  background: #fff;
+  transform: rotate(45deg);
+}
+/*
+メニューの設定
+最初は閉じている状態なので、「opacity: 0;」「visibility: hidden;」
+で要素を非表示にしておく
+*/
+#navi {
+  width: 100%;
+  height: 100vh;
+  background-color: #ff2a2a;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  opacity: 0;
+  text-align: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+  visibility: hidden;
+}
+/*
+ハンバーガーメニューがクリックされた際に、jQueryで#naviにactiveクラスを追加して、
+メニューを表示させる。
+*/
+#navi.active {
+  opacity: 1;
+  visibility: visible;
+}
+#navi .logo {
+  width: 100px;
+  position: absolute;
+  top: 40px;
+  left: 50px;
+}
+#navi .menu {
+  margin: 80px 0 40px 0;
+}
+#navi .menu li {
+  margin-bottom: 20px;
+}
+#navi .menu a {
+  color: #fff;
+  font-weight: bold;
+}
+#navi .btn {
+  width: 250px;
+  border: solid 1px #fff;
+  color: #fff;
+  display: block;
+  font-weight: bold;
+  padding: 15px 0;
+  margin: 0 auto;
+  position: relative;
+  transition: 0.3s ease-in-out;
+}
+/* ボタンの右と下の線は疑似要素で設定 */
+#navi .btn::after {
+  content: "　";
+  width: 250px;
+  border-right: solid 1px #fff;
+  border-bottom: solid 1px #fff;
+  padding: 15px 0;
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+}
+#navi .btn:hover {
+  background-color: #fff;
+  color: #ff2a2a;
+}
+
+/*-------------------------------------------
+メインビジュアル
+-------------------------------------------*/
+#mainvisual {
+  height: 720px;
+  position: relative;
+  margin-bottom: 120px;
+}
+/*
+テキストとボタンを画像の上に表示「z-index」
+*/
+#mainvisual .text {
+  position: absolute;
+  top: 280px;
+  left: 10%;
+  z-index: 10;
+}
+/*
+文字の輪郭に白い影、
+文字が背景画像に埋もれないようにする
+*/
+#mainvisual .text .title {
+  font-size: 2.875rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-shadow: 0 4px 6px #fff;
+}
+#mainvisual .text .btn {
+  background-color: #ff2a2a;
+  /* 文字の下に影 */
+  border-bottom: 6px solid #9a0413;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.5rem;
+  display: block;
+  padding: 15px 35px;
+  text-align: center;
+  transition: 0.3s;
+  position: relative;
+}
+/*
+ボタンの右矢印
+上と右にボーダーを設定し、「transform: rotate(45deg)」で
+45度回転させることで矢印を作成
+positionで位置を調整
+*/
+#mainvisual .text .btn::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-top: solid 3px #fff;
+  border-right: solid 3px #fff;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 26px;
+  right: 30px;
+}
+/*
+ホバー時は、opacityで透過させながら「transform: scale(1.05);」で
+少しだけボタンのサイズを大きくする
+*/
+#mainvisual .text .btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+/*
+メインビジュアル
+animationを使用
+*/
+#mainvisual .fade li {
+  width: 75%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* 最初は3枚の画像を非表示 */
+  opacity: 0;
+  /*
+  アニメーションを実行
+  fade：定義「@keyframes fade」を実行
+  15s：「@keyframes fade」の処理を15秒かけて実行
+  infinite：アニメーションの処理 繰り返し
+  */
+  animation: fade 15s infinite;
+}
+/*
+1枚目の画像のアニメーション実行タイミング
+「animation-delay: 0s;」ですぐに実行
+*/
+#mainvisual .fade li:nth-child(1) {
+  animation-delay: 0s;
+}
+/*
+2枚目の画像のアニメーション実行タイミング
+「animation-delay: 5s;」で5秒後に実行
+*/
+#mainvisual .fade li:nth-child(2) {
+  animation-delay: 5s;
+}
+/*
+3枚目の画像のアニメーション実行タイミング
+「animation-delay: 10s;」で10秒後に実行
+*/
+#mainvisual .fade li:nth-child(3) {
+  animation-delay: 10s;
+}
+#mainvisual .fade li img {
+  width: 100%;
+  height: 720px;
+  object-fit: cover;
+}
+/*
+「box-shadow」で画像のまわりをぼかす
+*/
+#mainvisual .fade li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: inset 0px 0px 20px 20px #fff;
+}
+/*
+アニメーション処理
+上の「animation」で15sを指定しているので下記の処理を15秒かけて実行
+0%が0秒〜100%が15秒後
+
+0%の「opacity: 0;」で非表示の状態からスタートし、
+15%になるまでの間に少しづつ画像を表示（フェードイン）させる。
+そこから30%の時点までは画像を表示させたままの状態を維持し、
+45%の時点に向けて画像を非表示（フェードアウト）する。
+そこから100%まで非表示の状態を維持する。
+*/
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/*-------------------------------------------
+BBBが選ばれる理由
+-------------------------------------------*/
+#reason {
+  margin-bottom: 120px;
+}
+#reason .bg {
+  background-color: #ff2a2a;
+  padding: 80px 0;
+}
+/*
+スライド左右共通
+最初は「opacity: 0;」で非表示にしておく
+*/
+#reason .slide {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 5%;
+  opacity: 0;
+}
+#reason .slide img {
+  width: auto;
+  height: 60px;
+  margin-right: 30px;
+}
+#reason .slide .title {
+  color: #ff2a2a;
+  display: block;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+#reason .slide .text {
+  display: block;
+  font-size: 1.125rem;
+}
+#reason .inview-slide-left {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-bottom: 40px;
+}
+/*
+アニメーション（スライド左）を実行
+
+slide-left：定義「@keyframes slide-left」を実行
+0.5s：0.5sかけて実行
+ease-out：開始時は早く、終了時は緩やかに変化
+0s：アニメーションが始まるまでの時間（0sですぐに実行）
+1：アニメーションの繰り返し回数（1回）
+forwards：アニメーション終了時の状態をそのまま維持
+*/
+#reason .slide-left {
+  animation: slide-left 0.5s ease-out 0s 1 forwards;
+}
+/*
+アニメーション処理
+
+最初は「translateX(-50%);」で左側に隠しておく
+100%（0.5秒）かけて要素を表示させながら元の位置へ移動させる
+*/
+@keyframes slide-left {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+#reason .inview-slide-right {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+/*
+アニメーション（スライド右）を実行
+
+※左の処理と同様
+*/
+#reason .slide-right {
+  animation: slide-right 0.5s ease-out 0s 1 forwards;
+}
+@keyframes slide-right {
+  0% {
+    transform: translateX(150%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+/*-------------------------------------------
+受講生の声
+-------------------------------------------*/
+#voice {
+  margin-bottom: 120px;
+}
+#voice .item-left,
+#voice .item-right {
+  display: flex;
+  align-items: flex-start;
+  opacity: 0;
+  margin-bottom: 60px;
+}
+#voice .item-left {
+  justify-content: flex-start;
+}
+#voice .item-left:last-of-type {
+  margin-bottom: 0;
+}
+#voice .item-right {
+  justify-content: flex-end;
+}
+#voice .student img {
+  width: 120px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+#voice .student .name {
+  font-size: 0.75rem;
+  text-align: center;
+}
+/* ふきだし */
+#voice .item-left .balloon-text,
+#voice .item-right .balloon-text {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  background: #e9f1fb;
+  border-radius: 15px;
+  padding: 20px;
+  position: relative;
+}
+#voice .item-left .balloon-text {
+  margin-left: 25px;
+}
+/* 左のふきだしの矢印部分 */
+#voice .item-left .balloon-text::before {
+  content: "";
+  position: absolute;
+  top: 60%;
+  left: 0;
+  margin-left: -30px;
+  border: 15px solid transparent;
+  border-right: 15px solid #e9f1fb;
+}
+#voice .item-right .balloon-text {
+  margin-right: 25px;
+}
+/* 右のふきだしの矢印部分 */
+#voice .item-right .balloon-text::before {
+  content: "";
+  position: absolute;
+  top: 60%;
+  right: 0;
+  margin-right: -30px;
+  border: 15px solid transparent;
+  border-left: 15px solid #e9f1fb;
+}
+/*
+アニメーションを実行
+
+balloon：定義「@keyframes balloon」を実行
+0.5s：0.5sかけて実行
+ease-out：開始時は早く、終了時は緩やかに変化
+0s：0sですぐに実行
+1：アニメーションの繰り返し回数（1回）
+forwards：アニメーション終了時の状態をそのまま維持
+*/
+#voice .balloon {
+  animation: balloon 0.5s ease-out 0s 1 forwards;
+}
+/*
+アニメーション処理
+
+最初は「transform: scale(0.1);」で要素を小さくした状態で、「opacity: 0;」で非表示
+0.5秒かけて要素を表示させながら元のサイズへ
+*/
+@keyframes balloon {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/*-------------------------------------------
+概要
+-------------------------------------------*/
+/*
+アニメーションを実行
+
+fall：定義「@keyframes fall」を実行
+10s：10sかけて実行
+infinite：アニメーションの繰り返し
+linear：開始から終了まで一定に変化
+*/
+#summary {
+  background: url("../img/bg.gif") repeat;
+  animation: fall 10s infinite linear;
+  padding: 60px 0;
+  margin-bottom: 120px;
+}
+/*
+アニメーション処理
+
+10秒かけて背景画像の位置「background-position」を移動させる動作を繰り返す
+*/
+@keyframes fall {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -700px 700px;
+  }
+}
+#summary .menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#summary .menu li {
+  width: 48%;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 60px;
+  margin-bottom: 32px;
+}
+
+#summary .menu li:nth-child(n + 3) {
+  margin-bottom: 0;
+}
+#summary .menu-title {
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+}
+#summary .menu-title .ja {
+  display: block;
+  font-size: 1.75rem;
+  margin-bottom: 15px;
+}
+#summary .menu-title .en {
+  display: block;
+  font-size: 1.125rem;
+  margin-bottom: 30px;
+}
+
+/*-------------------------------------------
+無料体験　申し込み
+-------------------------------------------*/
+#entry {
+  margin-bottom: 120px;
+  text-align: center;
+}
+#entry .title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+#entry .catchphrase {
+  font-size: 1.125rem;
+  margin-bottom: 40px;
+}
+#entry .btn {
+  background-color: #ff2a2a;
+  border-radius: 40px;
+  border: solid 3px #ff2a2a;
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: bold;
+  display: block;
+  padding: 15px;
+  text-align: center;
+  transition: 0.3s;
+}
+#entry .btn:hover {
+  background-color: #fff;
+  border: solid 3px #ff2a2a;
+  color: #ff2a2a;
+}
+
+/*-------------------------------------------
+フッター
+-------------------------------------------*/
+#footer {
+  background-color: #e8e8e8;
+  padding: 60px 0 20px 0;
+}
+#footer a {
+  font-size: 0.875rem;
+  /*
+  ホバー時の透過をふわっと
+  0.3秒かけて実行
+  */
+  transition: 0.3s;
+}
+#footer a:hover {
+  opacity: 0.7;
+}
+#footer .inner {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+#footer .inner > li {
+  width: 25%;
+}
+#footer .inner .title {
+  font-weight: bold;
+}
+#footer .inner .menu {
+  padding: 10px 0 0 10px;
+}
+#footer .inner .menu li {
+  margin-bottom: 3px;
+}
+#footer .copyright {
+  font-size: 0.625rem;
+  text-align: center;
+}
+
+/*-------------------------------------------
+SP
+-------------------------------------------*/
+@media screen and (max-width: 900px) {
+  .wrapper {
+    padding: 0 16px;
+  }
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 60px;
+  }
+  .section-title::after {
+    width: 80px;
+  }
+
+  /*-------------------------------------------
+  ヘッダー
+  -------------------------------------------*/
+  #header {
+    padding: 25px 0 0 25px;
+  }
+
+  /* ハンバーガ―メニュー */
+  .hamburger {
+    width: 75px;
+    height: 75px;
+  }
+  .hamburger span {
+    width: 35px;
+    left: 21px;
+  }
+  .hamburger span:nth-child(1) {
+    top: 26px;
+  }
+  .hamburger span:nth-child(2) {
+    top: 37px;
+  }
+  .hamburger span:nth-child(3) {
+    top: 48px;
+  }
+  .hamburger.active span:nth-child(1) {
+    top: 37px;
+    left: 21px;
+  }
+  .hamburger.active span:nth-child(2),
+  .hamburger.active span:nth-child(3) {
+    top: 37px;
+  }
+  #navi .logo {
+    top: 25px;
+    left: 25px;
+  }
+  #navi .menu {
+    margin-top: 110px;
+  }
+
+  /*-------------------------------------------
+  メインビジュアル
+  -------------------------------------------*/
+  #mainvisual {
+    height: 490px;
+    margin-bottom: 80px;
+  }
+  #mainvisual .fade li {
+    width: 100%;
+  }
+  #mainvisual .fade li img {
+    height: 300px;
+  }
+  #mainvisual .text {
+    width: calc(100% - 32px);
+    top: 310px;
+    left: 16px;
+  }
+  #mainvisual .text .title {
+    font-size: 1.75rem;
+    margin-bottom: 10px;
+  }
+  #mainvisual .text .btn {
+    width: 100%;
+  }
+
+  /*-------------------------------------------
+  BBBが選ばれる理由
+  -------------------------------------------*/
+  #reason {
+    margin-bottom: 80px;
+  }
+  #reason .bg {
+    padding: 40px 0;
+  }
+  #reason .slide {
+    width: calc(100% - 16px);
+  }
+  #reason .slide .title {
+    font-size: 1.5rem;
+  }
+  @keyframes slide-left {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes slide-right {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(16px);
+    }
+  }
+
+  /*-------------------------------------------
+  受講生の声
+  -------------------------------------------*/
+  #voice {
+    margin-bottom: 80px;
+  }
+  #voice .student {
+    text-align: center;
+  }
+  #voice .item-left,
+  #voice .item-right {
+    margin-bottom: 40px;
+  }
+  #voice .item-left {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  #voice .item-right {
+    flex-direction: column;
+    align-items: center;
+  }
+  #voice .item-left .balloon-text,
+  #voice .item-right .balloon-text {
+    width: 100%;
+    margin: 0 0 30px 0;
+  }
+  /*
+  スマホの場合はふきだしの向きを下に変更
+  */
+  #voice .item-left .balloon-text::before,
+  #voice .item-right .balloon-text::before {
+    top: 100%;
+    border: 15px solid transparent;
+    border-top: 15px solid #e9f1fb;
+  }
+  #voice .item-left .balloon-text::before {
+    margin-left: calc(50% - 15px);
+  }
+  #voice .item-right .balloon-text::before {
+    margin-right: calc(50% - 15px);
+  }
+
+  /*-------------------------------------------
+  概要
+  -------------------------------------------*/
+  #summary {
+    margin-bottom: 80px;
+  }
+  #summary .menu {
+    flex-direction: column;
+  }
+  #summary .menu li {
+    width: 100%;
+    padding: 30px;
+  }
+  #summary .menu li:nth-child(3) {
+    margin-bottom: 32px;
+  }
+  #summary .menu-title .ja {
+    font-size: 1.5rem;
+  }
+  #summary .menu-title .en {
+    font-size: 1rem;
+  }
+
+  /*-------------------------------------------
+  無料体験 申し込み
+  -------------------------------------------*/
+  #entry {
+    margin-bottom: 80px;
+  }
+  #entry .title {
+    font-size: 1.5rem;
+  }
+  #entry .catchphrase {
+    font-size: 1rem;
+  }
+  #entry .btn{
+    font-size: 1.5rem;
+  }
+
+  /*-------------------------------------------
+  フッター
+  -------------------------------------------*/
+  #footer .inner {
+    flex-wrap: wrap;
+  }
+  #footer a {
+    font-size: 0.75rem;
+  }
+  #footer .inner .title {
+    font-size: 0.9375rem;
+  }
+  #footer .inner > li {
+    width: 50%;
+  }
+  #footer .inner > li:nth-child(1),
+  #footer .inner > li:nth-child(2) {
+    margin-bottom: 30px;
+  }
+}
